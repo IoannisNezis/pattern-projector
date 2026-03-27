@@ -1,0 +1,16 @@
+services:
+  pattern-projector:
+    build: .
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pattern-projector.rule=Host(`pattern-projector.nezis.de`)"
+      - "traefik.http.routers.pattern-projector.entrypoints=websecure"
+      - "traefik.http.routers.pattern-projector.tls.certresolver=http_resolver"
+      - "traefik.http.services.pattern-projector.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true

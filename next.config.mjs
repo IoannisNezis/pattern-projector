@@ -13,6 +13,7 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     config.resolve.fallback = { fs: false };
